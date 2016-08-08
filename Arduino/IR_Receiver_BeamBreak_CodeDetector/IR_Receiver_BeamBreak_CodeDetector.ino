@@ -37,7 +37,7 @@ const uint16_t rfNode = 01;
 // Master receiver Arduino Uno is base node: 00
 /*--------------------------------------------------------*/
 
-const int ledBBPin = 4; // LED Beam Break Pin: ON when beam break detected (OFF when receiving IR signal)
+const int ledBBPin = 3; // LED Beam Break Pin: ON when beam break detected (OFF when receiving IR signal)
 
 const int inputCapturePin = 8; // Input Capture pin fixed to internal Timer - MUST BE 8 on ATMega168/328
 const int prescale = 64; // prescale factor 64 needed to count to 62 ms for beam break
@@ -104,11 +104,11 @@ void setup() {
   pinMode(inputCapturePin, INPUT); // ICP pin (digital pin 8 on Arduino) as input
   pinMode(ledBBPin, OUTPUT); // LED on when beam break detected
   
-  pinMode(3, INPUT); // jumper on 3 to +v to set to code detector mode
-  if (digitalRead(3) == 1){
-    codeDetectMode = true;
-  }
-  
+//  pinMode(3, INPUT); // jumper on 3 to +v to set to code detector mode
+//  if (digitalRead(3) == 1){
+//    codeDetectMode = true;
+//  }
+//  
   cli(); //stop interrupts temporarily
   
   //input capture timer:

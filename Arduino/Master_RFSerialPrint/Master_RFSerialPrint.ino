@@ -33,7 +33,7 @@ void setup() {
   radio.begin(); // start the RF24 module
   network.begin(90, rfNode); // start the RF24 network on channel 90 with rfNode address
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("ready to receive and print network messages\n");
 }
 
@@ -46,11 +46,31 @@ void loop() {
     RF24NetworkHeader header;   // if so, grab it and print to serial
     payload_t payload;
     network.read(header,&payload,sizeof(payload));
-    Serial.print(payload.rfCode);
-    Serial.print(" from node ");
-    Serial.print(header.from_node);
-    Serial.print('\n');
+    serialOut(header.from_node, payload.rfCode);
   }
+}
+
+void serialOut(uint16_t node, unsigned long code){
+  // convert node address to header char ('A','B'...)
+  char nChar = 0;
+  
+  // infrared beams
+  if (node == 01) nChar = 'A';
+  else if (node == 02) nChar = 'B';
+  else if (node == 03) nChar = 'C';
+  else if (node == 04) nChar = 'D';
+  else if (node == 05) nChar = 'E';
+  
+  // cap bowls
+  else if (node == 011) nChar = 'F';
+  else if (node == 021) nChar = 'G';
+  else if (node == 031) nChar = 'H';
+  else if (node == 041) nChar = 'I';
+  else if (node == 051) nChar = 'J';
+  
+  Serial.print(nChar);
+  Serial.print(code);
+  Serial.print('\n');
 }
 
 
