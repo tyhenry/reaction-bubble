@@ -67,6 +67,7 @@ void serialOut(uint16_t node, unsigned long code){
   else if (node == 031) nChar = 'H';
   else if (node == 041) nChar = 'I';
   else if (node == 051) nChar = 'J';
+  else if (node == 0151) nChar = 'K';
   
   Serial.print(nChar);
   Serial.print(code);
