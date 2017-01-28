@@ -34,7 +34,7 @@ void setup() {
   network.begin(90, rfNode); // start the RF24 network on channel 90 with rfNode address
 
   Serial.begin(115200);
-  Serial.println("ready to receive and print network messages\n");
+  Serial.println("\nLOVID REACTION BUBBLE: MASTER RF SERIAL PRINT\n");
 }
 
 void loop() {
